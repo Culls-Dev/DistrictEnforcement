@@ -1,0 +1,24 @@
+{
+  "stats": {
+    "minecraft:used": {
+      "minecraft:pig_spawn_egg": 1,
+      "minecraft:carrot_on_a_stick": 4
+    },
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 37587,
+      "minecraft:walk_one_cm": 6659,
+      "minecraft:leave_game": 15,
+      "minecraft:play_time": 42883,
+      "minecraft:damage_dealt": 10,
+      "minecraft:jump": 114,
+      "minecraft:time_since_death": 37564,
+      "minecraft:sprint_one_cm": 14661,
+      "minecraft:total_world_time": 42883,
+      "minecraft:fly_one_cm": 73336,
+      "minecraft:crouch_one_cm": 156,
+      "minecraft:sneak_time": 290,
+      "minecraft:deaths": 1
+    }
+  },
+  "DataVersion": 4671
+}

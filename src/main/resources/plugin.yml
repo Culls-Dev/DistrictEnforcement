@@ -1,0 +1,16 @@
+name: DistrictEnforcement
+description: $description
+version: '${version}'
+
+main: xyz.districtrp.districtEnforcement.DistrictEnforcement
+api-version: '1.21.11'
+load: STARTUP
+
+authors: [ Culls ]
+website: districtrp.xyz
+
+commands:
+  enforce:
+    description: District Enforcement main command
+    permission: districtEnforcement.enforce
+    usage: /<command>

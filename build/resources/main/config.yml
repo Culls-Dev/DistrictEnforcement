@@ -1,0 +1,25 @@
+messages:
+  prefix: "&8[&bDistrictEnforcement&8] "
+  cuffed: "&eYou have been restrained."
+  cuffed-target: "&e%player% has been restrained."
+  uncuffed: "&aYou have been released."
+  no-permission: "&cYou do not have permission."
+  cooldown: "&cYou must wait %time%s."
+
+handcuffs:
+  cooldown: 3
+  max-distance: 4.0
+
+taser:
+  cooldown: 5
+  effects:
+    duration: 4
+    slowness-level: 4
+
+restrictions:
+  prevent-sprint: true
+  prevent-drop: true
+  prevent-pickup: true
+  prevent-container-use: true
+  prevent-attack: true
+  prevent-flight: true
