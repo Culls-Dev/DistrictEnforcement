@@ -17,24 +17,22 @@ public final class DistrictEnforcement extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Load default config
+
         saveDefaultConfig();
 
         getComponentLogger().info("DistrictEnforcement is initializing...");
 
-        // Initialize Managers
         this.cooldownManager = new CooldownManager(this);
         this.handcuffManager = new HandcuffManager(this);
         this.policeItems = new PoliceItems(this);
 
-        // Register Listeners
+
         getServer().getPluginManager().registerEvents(new HandcuffListener(this), this);
         getServer().getPluginManager().registerEvents(new RestrictionListener(this), this);
-        // Inside your onEnable() method:
+
         getServer().getPluginManager().registerEvents(new xyz.districtrp.districtEnforcement.listener.MenuListener(), this);
         getServer().getPluginManager().registerEvents(new TaserListener(this), this);
 
-        // Register Commands
         getCommand("enforce").setExecutor(new EnforceCommand(this));
         getCommand("enforce").setTabCompleter(new EnforceCommand(this));
 

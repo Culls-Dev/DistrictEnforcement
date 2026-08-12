@@ -41,7 +41,6 @@ public class RestrictionListener implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         if (plugin.getConfig().getBoolean("restrictions.prevent-container-use", true) && isRestricted(event.getPlayer())) {
-            // Can be refined to only cancel container blocks if needed
             event.setCancelled(true);
         }
     }

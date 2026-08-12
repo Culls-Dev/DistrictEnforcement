@@ -30,14 +30,13 @@ public class TaserListener implements Listener {
         Player officer = event.getPlayer();
         if (!plugin.getPoliceItems().isTaser(officer.getInventory().getItemInMainHand())) return;
 
-        event.setCancelled(true); // Prevent default shear usage
+        event.setCancelled(true);
 
         if (!officer.hasPermission("districtEnforcement.taser.use")) {
             officer.sendMessage(Component.text("You do not have permission to use a taser.").color(NamedTextColor.RED));
             return;
         }
 
-        // Check Cooldown
         int cooldown = plugin.getConfig().getInt("taser.cooldown", 5);
         if (plugin.getCooldownManager().isOnCooldown(officer.getUniqueId())) {
             long remaining = plugin.getCooldownManager().getRemaining(officer.getUniqueId());
@@ -45,13 +44,9 @@ public class TaserListener implements Listener {
             return;
         }
 
-        // Fire Projectile
         Snowball dart = officer.launchProjectile(Snowball.class);
         dart.setShooter(officer);
-        // Tag the projectile so we know it's a taser dart and not a regular snowball
         dart.getPersistentDataContainer().set(plugin.getPoliceItems().getDartKey(), PersistentDataType.BOOLEAN, true);
-
-        // Optional: Increase projectile speed
         dart.setVelocity(dart.getVelocity().multiply(1.5));
 
         plugin.getCooldownManager().setCooldown(officer.getUniqueId(), cooldown);
@@ -61,7 +56,6 @@ public class TaserListener implements Listener {
     public void onTaserHit(ProjectileHitEvent event) {
         if (!(event.getEntity() instanceof Snowball dart)) return;
 
-        // Verify it's a taser dart
         if (!dart.getPersistentDataContainer().has(plugin.getPoliceItems().getDartKey(), PersistentDataType.BOOLEAN)) return;
 
         if (event.getHitEntity() instanceof Player suspect) {
@@ -69,7 +63,6 @@ public class TaserListener implements Listener {
             int ticks = durationSeconds * 20;
             int slowLevel = plugin.getConfig().getInt("taser.effects.slowness-level", 4);
 
-            // Apply Stun Effects
             suspect.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, ticks, slowLevel, false, false, true));
             suspect.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, ticks, 1, false, false, true));
             suspect.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, ticks, 1, false, false, true));

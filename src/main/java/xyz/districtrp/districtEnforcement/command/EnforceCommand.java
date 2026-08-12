@@ -59,7 +59,7 @@ public class EnforceCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
 
-            // Open the new Native Dialog
+
             PoliceControlPanel.open(player);
             return true;
         }

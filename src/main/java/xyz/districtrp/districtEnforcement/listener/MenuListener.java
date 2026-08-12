@@ -37,7 +37,6 @@ public class MenuListener implements Listener {
             case "district:pcp_submit_records" -> {
                 var responseView = event.getDialogResponseView();
                 if (responseView != null) {
-                    // Use getText() instead of getString()
                     String searchQuery = responseView.getText("record_query");
 
                     player.sendMessage(Component.text("Searching records for: " + (searchQuery != null ? searchQuery : "none")).color(NamedTextColor.YELLOW));

@@ -24,7 +24,7 @@ public class PoliceItems {
     }
 
     public ItemStack getHandcuffs() {
-        ItemStack cuffs = new ItemStack(Material.IRON_NUGGET); // Replace with your texture pack material
+        ItemStack cuffs = new ItemStack(Material.IRON_NUGGET); // REPLACE SOON WITH TEXTURE - CULLS
         ItemMeta meta = cuffs.getItemMeta();
 
         if (meta != null) {
@@ -33,14 +33,12 @@ public class PoliceItems {
                     Component.text("Right-click a player to restrain them.").color(NamedTextColor.GRAY)
             ));
 
-            // Secure Identification using PDC
             meta.getPersistentDataContainer().set(handcuffKey, PersistentDataType.BOOLEAN, true);
             cuffs.setItemMeta(meta);
         }
         return cuffs;
     }
     public ItemStack getTaser() {
-        // Shears are commonly used for handguns/tasers in RP texture packs
         ItemStack taser = new ItemStack(Material.STICK);
         ItemMeta meta = taser.getItemMeta();
 

@@ -14,7 +14,6 @@ import java.util.UUID;
 public class HandcuffManager {
 
     private final DistrictEnforcement plugin;
-    // Map of Suspect UUID -> Officer UUID
     private final Map<UUID, UUID> cuffedPlayers = new HashMap<>();
     private BukkitRunnable dragTask;
 
@@ -62,27 +61,27 @@ public class HandcuffManager {
                     Player suspect = Bukkit.getPlayer(entry.getKey());
                     Player officer = Bukkit.getPlayer(entry.getValue());
 
-                    // If either disconnects, break the cuff
+
                     if (suspect == null || officer == null || !suspect.isOnline() || !officer.isOnline()) {
                         if (suspect != null) cuffedPlayers.remove(suspect.getUniqueId());
                         continue;
                     }
 
-                    // Enforce distance
+
                     if (suspect.getWorld().equals(officer.getWorld())) {
                         double distance = suspect.getLocation().distance(officer.getLocation());
                         if (distance > maxDistance) {
-                            // Teleport suspect slightly behind officer to avoid collision issues
+
                             suspect.teleport(officer.getLocation().subtract(officer.getLocation().getDirection().multiply(1.5)));
                         }
                     } else {
-                        // Teleport to officer's world if they somehow switch worlds
+
                         suspect.teleport(officer.getLocation());
                     }
                 }
             }
         };
-        // Run every 10 ticks (half a second) to be lightweight
+
         dragTask.runTaskTimer(plugin, 10L, 10L);
     }
 }

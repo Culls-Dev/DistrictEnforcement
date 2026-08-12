@@ -20,16 +20,16 @@ public class HandcuffListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEntityEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) return; // Prevent double-firing with offhand
+        if (event.getHand() != EquipmentSlot.HAND) return;
         if (!(event.getRightClicked() instanceof Player suspect)) return;
 
         Player officer = event.getPlayer();
         ItemStack itemInHand = officer.getInventory().getItemInMainHand();
 
-        // Check if item is handcuffs via PDC
+
         if (!plugin.getPoliceItems().isHandcuff(itemInHand)) return;
 
-        // Permissions
+
         if (!officer.hasPermission("districtEnforcement.handcuffs.use")) {
             officer.sendMessage(Component.text("You do not have permission to use handcuffs.").color(NamedTextColor.RED));
             return;
@@ -37,12 +37,12 @@ public class HandcuffListener implements Listener {
 
         HandcuffManager manager = plugin.getHandcuffManager();
 
-        // Prevent self-cuffing (just in case of weird hitboxes)
+
         if (officer.equals(suspect)) return;
 
-        // Uncuffing logic
+
         if (manager.isCuffed(suspect.getUniqueId())) {
-            // Only the officer who cuffed them (or admin) can uncuff
+
             if (manager.getCuffedBy(suspect.getUniqueId()).equals(officer.getUniqueId()) || officer.hasPermission("districtEnforcement.admin")) {
                 manager.uncuff(suspect, officer);
             } else {
@@ -51,7 +51,7 @@ public class HandcuffListener implements Listener {
             return;
         }
 
-        // Cuffing logic (with cooldown check)
+
         int cooldown = plugin.getConfig().getInt("handcuffs.cooldown", 3);
         if (plugin.getCooldownManager().isOnCooldown(officer.getUniqueId())) {
             long remaining = plugin.getCooldownManager().getRemaining(officer.getUniqueId());
@@ -59,7 +59,7 @@ public class HandcuffListener implements Listener {
             return;
         }
 
-        // Apply state and cooldown
+
         manager.cuff(suspect, officer);
         plugin.getCooldownManager().setCooldown(officer.getUniqueId(), cooldown);
     }

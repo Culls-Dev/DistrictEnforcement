@@ -25,7 +25,7 @@ public class PoliceRecordsDialog {
                                 DialogBody.plainMessage(Component.text("Awaiting search...", NamedTextColor.DARK_GRAY))
                         ))
                         .inputs(List.of(
-                                // Added .build() here to resolve the Builder type mismatch
+
                                 DialogInput.text("record_query", Component.text("Citizen Name")).build()
                         ))
                         .build()

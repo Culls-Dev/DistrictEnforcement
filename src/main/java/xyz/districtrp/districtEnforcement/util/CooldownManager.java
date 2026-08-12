@@ -23,7 +23,7 @@ public class CooldownManager {
     public boolean isOnCooldown(UUID player) {
         if (!cooldowns.containsKey(player)) return false;
         if (System.currentTimeMillis() >= cooldowns.get(player)) {
-            cooldowns.remove(player); // Clean up expired memory automatically
+            cooldowns.remove(player); // CLEAN UP - CULLS
             return false;
         }
         return true;

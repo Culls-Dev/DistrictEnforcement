@@ -26,19 +26,18 @@ public class PoliceControlPanel {
                         .build()
                 )
                 .type(DialogType.multiAction(List.of(
-                        // Wanted Criminals Button
+
                         ActionButton.builder(Component.text("Wanted Criminals", NamedTextColor.RED))
                                 .tooltip(Component.text("View and manage active warrants."))
                                 .action(DialogAction.customClick(Key.key("district", "pcp_wanted"), null))
                                 .build(),
 
-                        // Active Cases Button
+
                         ActionButton.builder(Component.text("Active Cases", NamedTextColor.GOLD))
                                 .tooltip(Component.text("Review ongoing investigations."))
                                 .action(DialogAction.customClick(Key.key("district", "pcp_cases"), null))
                                 .build(),
 
-                        // Police Records Button
                         ActionButton.builder(Component.text("Police Records", NamedTextColor.AQUA))
                                 .tooltip(Component.text("Search citizen arrest records."))
                                 .action(DialogAction.customClick(Key.key("district", "pcp_records"), null))
